@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %} | Yamine Lamal</title>
+
+    {% load static %}
+
+    <!-- Fonts and Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'core/css/business-casual.css' %}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{% url 'home' %}" class="nav-link">Home</a>
+        <a href="{% url 'store' %}" class="nav-link">Products</a>
+    </nav>
+
+    {% block content %} {% endblock %}
+</body>
+</html>
