@@ -3,10 +3,28 @@
 
 {% block content %}
 <section class="product-detail">
-    <h1 class="title">{{ product.title }}</h1>
-    <h2 class="subtitle">{{ product.subtitle }}</h2>
-    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-image">
-    <p class="content">{{ product.content }}</p>
-    <p><strong>Created:</strong> {{ product.created }}</p>
+    <h1 class="product-title">{{ product.title }}</h1>
+    <h2 class="product-subtitle">{{ product.subtitle }}</h2>
+
+    <!-- Product Image Section -->
+    <div class="product-image-container">
+        <img
+            src="{{ product.image.url }}"
+            alt="{{ product.title }}"
+            class="product-image"
+        />
+        {% if product.image_hover %}
+        <img
+            src="{{ product.image_hover.url }}"
+            alt="{{ product.title }}"
+            class="product-image-hover"
+        />
+        {% endif %}
+    </div>
+
+    <!-- Product Description -->
+    <p class="product-description">{{ product.content }}</p>
+    <p class="product-price"><strong>Price:</strong> $ {{ product.price }}</p>
+    <p class="product-created"><strong>Created:</strong> {{ product.created }}</p>
 </section>
 {% endblock %}

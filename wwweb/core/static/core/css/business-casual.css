@@ -1,5 +1,9 @@
+/* -----------------------------------------
+   General Styles and Resets
+   ----------------------------------------- */
+
 /* Reset */
-body, h1, h2, a {
+body, h1, h2, a, p {
   margin: 0;
   padding: 0;
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Arial, sans-serif;
@@ -13,11 +17,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
-/* Navbar */
+/* -----------------------------------------
+   Navbar Styles
+   ----------------------------------------- */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -27,6 +34,7 @@ body {
   background-color: #fff;
   padding: 1rem 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .nav-link {
@@ -42,10 +50,13 @@ body {
   color: #007aff;
 }
 
-/* Main Page Layout */
+/* -----------------------------------------
+   Main Page Layout
+   ----------------------------------------- */
+
 .main-page {
   text-align: center;
-  margin-top: 100px; /* Adjust to leave space for the navbar */
+  margin-top: 100px; /* Leave space for navbar */
 }
 
 .title {
@@ -64,40 +75,194 @@ body {
   color: #007aff;
 }
 
-/* Product List */
-.product-list {
-  margin-top: 2rem;
+/* -----------------------------------------
+   Products Grid Layout
+   ----------------------------------------- */
+
+/* Grid Container */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid with dynamic columns */
+  gap: 20px; /* Space between items */
+  margin: 20px;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1200px; /* Optional: Limit the grid width */
 }
 
 .product-item {
-  font-size: 2rem;
-  margin: 1rem 0;
-  transition: color 0.3s ease;
-  text-transform: capitalize;
+  position: relative;
+  margin-bottom: 20px; /* Space below each product item */
+  text-align: center; /* Center alignment for content */
 }
 
-.product-item a {
-  text-decoration: none;
-  color: #000;
+
+
+/* -----------------------------------------
+   Image Container and Hover Effects
+   ----------------------------------------- */
+
+   .product-image-container {
+    position: relative;
+    width: 100%; /* Full width of container */
+    padding-top: 100%; /* Square aspect ratio */
+    border: 5px solid black; /* Border for images */
+    overflow: hidden; /* Prevent content overflow */
+    box-sizing: border-box;
 }
 
-.product-item a:hover {
-  color: #007aff;
+/* Default Product Image */
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fit image to the square */
+  transition: opacity 0.3s ease;
 }
 
-/* Scrollbar Styling */
-.product-list {
-  max-height: 300px;
-  overflow-y: scroll;
-  padding-right: 10px;
+/* Hover Image */
+.product-hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fit hover image to the square */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
 }
 
-.product-list::-webkit-scrollbar {
-  width: 6px;
+/* Hover Effects */
+.product-image-container:hover .product-image {
+  opacity: 0; /* Hide default image */
 }
 
-.product-list::-webkit-scrollbar-thumb {
-  background: #007aff;
-  border-radius: 3px;
+.product-image-container:hover .product-hover-image {
+  opacity: 1; /* Show hover image */
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
+/* -----------------------------------------
+   Price Styling
+   ----------------------------------------- */
+
+/* Price Container */
+.price-container {
+  margin-top: 10px; /* Space between image and price */
+  text-align: center;
+  position: relative; /* Independent positioning */
+}
+/* After */
+.product-price {
+  display: inline-block;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: 2px solid black;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Price Hover */
+.product-price:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  background-color: #f9f9f9; /* Subtle background change */
+}
+
+/* -----------------------------------------
+   Floating and Alignment
+   ----------------------------------------- */
+
+.product-item:hover {
+  transform: translateY(-5px); /* Float effect for the product item */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+/* ========== Product Detail Page ========== */
+
+/* Container for Product Detail Section */
+.product-detail {
+  max-width: 800px; /* Limit the width for readability */
+  margin: 0 auto; /* Center align the section */
+  padding: 20px; /* Spacing inside the container */
+  text-align: center; /* Center-align all text */
+}
+
+/* Title for Product Detail Page */
+.product-detail .product-title {
+  font-size: 2rem; /* Larger font size */
+  font-weight: bold; /* Bold text */
+  margin-bottom: 20px; /* Space below the title */
+}
+
+/* Subtitle for Product Detail Page */
+.product-detail .product-subtitle {
+  font-size: 1.5rem; /* Slightly smaller than the title */
+  color: #ffffff; /* Gray color */
+  margin-bottom: 20px; /* Space below the subtitle */
+}
+
+/* Product Image in Detail Page */
+.product-detail .product-image {
+  max-width: 100%; /* Full width */
+  position: relative;
+  height: auto; /* Maintain aspect ratio */
+  margin: 20px 0; /* Space around the image */
+  border: 2px solid #000; /* Black border for emphasis */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+/* Hover Image (Initially Hidden) */
+.product-detail .product-image-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+/* Show Hover Image on Hover */
+.product-image-container:hover .product-image {
+  opacity: 0; /* Hide the default image */
+}
+
+.product-image-container:hover .product-image-hover {
+  opacity: 1; /* Show the hover image */
+}
+
+/* Product Description */
+.product-description {
+  font-size: 1rem; /* Standard font size */
+  line-height: 1.6; /* Improve readability */
+  margin: 20px 0; /* Space around the content */
+  color: #ffffff; /* Darker gray for text */
+}
+
+/* Price in Product Detail Page */
+.product-price {
+  font-size: 1.5rem; /* Larger font size for emphasis */
+  font-weight: bold; /* Bold text */
+  color: #007aff; /* Blue color for highlight */
+  margin-bottom: 20px; /* Space below the price */
+}
+
+/* ========== Responsive Design ========== */
+
+/* Adjust Product Grid for Smaller Screens */
+@media (max-width: 768px) {
+  .products-grid {
+      grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  .product-image {
+      height: auto; /* Allow dynamic height for smaller screens */
+  }
+}

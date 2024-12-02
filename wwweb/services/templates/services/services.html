@@ -1,15 +1,41 @@
 {% extends 'core/base.html' %}
-{% block title %}Products{% endblock %}
+{% block title %}All Products{% endblock %}
 
 {% block content %}
-<section class="products-container">
-    <h1 class="page-title">All Products</h1>
-    <ul class="product-list">
+<section class="products-list">
+    <h1 class="page-title">Our Products</h1>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
         {% for product in products %}
-        <li class="product-item">
-            <a href="{% url 'product_detail' product.id %}">{{ product.title }}</a>
-        </li>
+        <div class="product-item">
+            <!-- Image Container -->
+            <div class="product-image-container">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.title }}"
+                        class="product-image"
+                        onerror="this.src='/path/to/default/image.jpg';"
+                    />
+                    {% if product.image_hover %}
+                    <img
+                        src="{{ product.image_hover.url }}"
+                        alt="{{ product.title }}"
+                        class="product-hover-image"
+                        onerror="this.style.display='none';"
+                    />
+                    {% endif %}
+                </a>
+            </div>
+            <!-- Price Container -->
+            <div class="price-container">
+                <a href="{% url 'product_detail' product.id %}" class="price-link">
+                    <p class="product-price">$ {{ product.price }}</p>
+                </a>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </section>
 {% endblock %}
